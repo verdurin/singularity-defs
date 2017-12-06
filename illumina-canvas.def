@@ -52,55 +52,55 @@ fi
 # download all of the data files
 # ==============================
 
-URL_LIST=""
-
-if [ ! -f $REF_TEST ]
-then
-	URL_LIST="$URL_LIST https://illumina-annotation.s3.amazonaws.com/References/v5.tar.gz"
-fi
-
-if [ ! -f $CACHE_TEST ]
-then
-    URL_LIST="$URL_LIST https://illumina-annotation.s3.amazonaws.com/Cache/v24.tar.gz"
-fi
-
-if [ ! -f $SD_GRCH37_TEST ]
-then
-    URL_LIST="$URL_LIST https://illumina-annotation.s3.amazonaws.com/SA/40/v40_GRCh37.tar.gz"
-fi
-
-if [ ! -f $SD_GRCH38_TEST ]
-then
-    URL_LIST="$URL_LIST https://illumina-annotation.s3.amazonaws.com/SA/40/v40_GRCh38.tar.gz"
-fi
-
-if [ ! -z "$URL_LIST" ]
-then
-	echo "- downloading data files in parallel... "
-	echo $URL_LIST | xargs -n 1 -P 8 wget -qcP Data
-	echo "finished."
-fi
-
-# =====================
-# unpack the data files
-# =====================
-
-unpack_file() {
-	if [ -f $3 ]
-	then
-		echo "- unpacking $1 files:"
-		pushd $2
-		tar xfz $3
-		popd
-		rm $3
-	fi
-}
-
-unpack_file "reference" $DATA_DIR $REF_TGZ
-unpack_file "cache" $DATA_DIR $CACHE_TGZ
-unpack_file "supplementary annotation GRCh37" $SA_DIR $SD_GRCH37_TGZ
-unpack_file "supplementary annotation GRCh38" $SA_DIR $SD_GRCH38_TGZ
-
+#URL_LIST=""
+#
+#if [ ! -f $REF_TEST ]
+#then
+#	URL_LIST="$URL_LIST https://illumina-annotation.s3.amazonaws.com/References/v5.tar.gz"
+#fi
+#
+#if [ ! -f $CACHE_TEST ]
+#then
+#    URL_LIST="$URL_LIST https://illumina-annotation.s3.amazonaws.com/Cache/v24.tar.gz"
+#fi
+#
+#if [ ! -f $SD_GRCH37_TEST ]
+#then
+#    URL_LIST="$URL_LIST https://illumina-annotation.s3.amazonaws.com/SA/40/v40_GRCh37.tar.gz"
+#fi
+#
+#if [ ! -f $SD_GRCH38_TEST ]
+#then
+#    URL_LIST="$URL_LIST https://illumina-annotation.s3.amazonaws.com/SA/40/v40_GRCh38.tar.gz"
+#fi
+#
+#if [ ! -z "$URL_LIST" ]
+#then
+#	echo "- downloading data files in parallel... "
+#	echo $URL_LIST | xargs -n 1 -P 8 wget -qcP Data
+#	echo "finished."
+#fi
+#
+## =====================
+## unpack the data files
+## =====================
+#
+#unpack_file() {
+#	if [ -f $3 ]
+#	then
+#		echo "- unpacking $1 files:"
+#		pushd $2
+#		tar xfz $3
+#		popd
+#		rm $3
+#	fi
+#}
+#
+#unpack_file "reference" $DATA_DIR $REF_TGZ
+#unpack_file "cache" $DATA_DIR $CACHE_TGZ
+#unpack_file "supplementary annotation GRCh37" $SA_DIR $SD_GRCH37_TGZ
+#unpack_file "supplementary annotation GRCh38" $SA_DIR $SD_GRCH38_TGZ
+#
 # =============
 # build Nirvana
 # =============
@@ -118,11 +118,11 @@ fi
 # ==============================
 
 # download a test vcf file
-if [ ! -f HiSeq.10000.vcf ]
-then
-    wget https://github.com/samtools/htsjdk/raw/master/src/test/resources/htsjdk/variant/HiSeq.10000.vcf
-fi
-
-# analyze it with Nirvana
-dotnet $NIRVANA_BIN -c $CACHE_DIR/Ensembl84 --sd $SA_DIR/GRCh37 -r $REF_TEST -i HiSeq.10000.vcf -o HiSeq.10000.annotated
+#if [ ! -f HiSeq.10000.vcf ]
+#then
+#    wget https://github.com/samtools/htsjdk/raw/master/src/test/resources/htsjdk/variant/HiSeq.10000.vcf
+#fi
+#
+## analyze it with Nirvana
+#dotnet $NIRVANA_BIN -c $CACHE_DIR/Ensembl84 --sd $SA_DIR/GRCh37 -r $REF_TEST -i HiSeq.10000.vcf -o HiSeq.10000.annotated
 
