@@ -1,0 +1,19 @@
+Bootstrap: docker
+From: centos:latest
+
+%help
+To activate dotnet, run 'scl enable rh-dotnetcore11 bash'
+
+%post
+yum update -y
+yum install -y git wget
+yum install -y centos-release-dotnet
+yum install -y rh-dotnetcore11
+
+cd /opt && wget https://github.com/Illumina/canvas/releases/download/1.31.0.843%2Bmaster/Canvas-1.31.0.843.master_x64.tar.gz
+cd /opt && tar zxvf Canvas-1.31.0.843.master_x64.tar.gz
+cd /opt && ln -s /opt/Canvas-1.31.0.843+master_x64 /opt/Canvas
+
+%labels
+Maintainer Adam Huffman
+Version v0.1
