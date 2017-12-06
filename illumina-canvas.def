@@ -7,3 +7,6 @@ yum install -y git wget
 yum install -y centos-release-dotnet
 yum install -y rh-dotnetcore11
 
+wget https://github.com/Illumina/canvas/releases/download/1.31.0.843%2Bmaster/Canvas-1.31.0.843.master_x64.tar.gz
+tar zxf Canvas-1.31.0.843.master_x64.tar.gz
+
