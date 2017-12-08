@@ -16,7 +16,7 @@ To activate dotnet, run 'scl enable rh-dotnetcore11 bash'
 
     mkdir -p /apps /gpfs0 /gpfs1 /gpfs2 /well /users/
 
-%run
+%runscript
     scl enable rh-dotnetcore11 "dotnet $@"
 
 %labels
